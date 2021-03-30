@@ -1,0 +1,39 @@
+def grid(size):
+    grid = list()
+    for i in range(size):
+        grid.append([])
+        for j in range(size):
+            grid[i].append(0)
+    return grid
+
+first_grid = grid(5)
+
+#initialize grid
+for i in range(0,5):
+    for j in range(0,5):
+        if i == j:
+            first_grid[i][j] = 1
+
+print(first_grid)
+
+while True:
+    second_grid = grid(5)
+    cnt = 0 #counter
+    for i in range(0,5):
+        for j in range(0,5):
+            if first_grid[i][j] == 1:
+                for a in range(i-1,i+1,1):
+                    for b in range(j-1,j+1,1):
+                        if a>0 and b>0 and a<4 and b<4:
+                            cnt+=first_grid[a][b]
+                        if cnt <3 or cnt >4:
+                            second_grid[a][b] = 1
+            else:
+                for a in range(i-1,i+1,1):
+                    for b in range(j-1,j+1,1):
+                        if a>0 and b>0 and a<4 and b<4:
+                            cnt+=first_grid[a][b]
+                        if cnt==3 or cnt >4:
+                            second_grid[a][b] = 1
+    print(second_grid)
+    first_grid = second_grid
